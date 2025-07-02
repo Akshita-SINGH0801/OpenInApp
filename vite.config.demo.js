@@ -1,13 +1,13 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig({
-  plugins: [react()],
   root: path.resolve(__dirname, 'demo'),
-  base: '/open-in-app-akshita/',
+  base: '',  // default is fine; empty base works with docs/
+  plugins: [react()],
   build: {
-    outDir: path.resolve(__dirname, 'dist'),
+    outDir: path.resolve(__dirname, 'docs'),
     emptyOutDir: true,
-  },
+  }
 });
