@@ -8,7 +8,6 @@ const OpenInApp = ({
   autoRedirect = false,
   buttonText = "Open in App",
 }) => {
-    
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   const isAndroid = /Android/i.test(navigator.userAgent);
 
@@ -19,7 +18,7 @@ const OpenInApp = ({
     setTimeout(() => {
       const fallbackUrl = isIOS ? fallbackAppStore : fallbackPlayStore;
       if (Date.now() - now >= delay && fallbackUrl) {
-        window.location.href = fallbackUrl;
+        window.open(fallbackUrl, "_blank", "noopener,noreferrer");
       }
     }, delay);
   };

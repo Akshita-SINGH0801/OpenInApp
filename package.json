@@ -1,6 +1,6 @@
 {
   "name": "open-in-app-akshita",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "main": "dist/open-in-app-akshita.umd.js",
   "module": "dist/open-in-app-akshita.es.js",
   "types": "dist/index.d.ts",
