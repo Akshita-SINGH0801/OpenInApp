@@ -27,9 +27,10 @@
   },
 "scripts": {
   "dev": "vite",
-  "build": "vite build",
   "build:demo": "vite build --config vite.config.demo.js",
   "predeploy": "npm run build:demo",
-  "deploy": "gh-pages -d dist"
+  "deploy": "gh-pages -d dist",
+  "dev:demo": "vite --config vite.config.demo.js"
 }
+
 }
