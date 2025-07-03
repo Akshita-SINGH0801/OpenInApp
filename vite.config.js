@@ -4,10 +4,19 @@ import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
-  root: path.resolve(__dirname, 'src/demo'), // 👈 this makes demo root
-  base: '/open-in-app-akshita/',             // 👈 GitHub Pages path
   build: {
-    outDir: path.resolve(__dirname, 'dist'), // 👈 build output to dist
-    emptyOutDir: true
-  }
+    lib: {
+      entry: path.resolve(__dirname, 'src/OpenInApp.jsx'),
+      name: 'OpenInApp',
+      fileName: (format) => `open-in-app-akshita.${format}.js`,
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+        },
+      },
+    },
+  },
 });
