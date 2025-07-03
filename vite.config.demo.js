@@ -7,7 +7,6 @@ export default defineConfig({
   root: path.resolve(__dirname, 'demo'),
   base: '/OpenInApp/', 
   build: {
-    outDir: path.resolve(__dirname, 'dist'),
-    emptyOutDir: true,
+    outDir: 'docs',
   },
 });
