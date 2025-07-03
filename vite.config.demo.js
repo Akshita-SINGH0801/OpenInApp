@@ -5,8 +5,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   root: path.resolve(__dirname, 'demo'),
-  base: '/OpenInApp/', 
+  base: '/OpenInApp/',   
   build: {
-    outDir: 'demo/docs',
+    outDir: path.resolve(__dirname, 'demo/docs'),
+    emptyOutDir: true, 
   },
 });
