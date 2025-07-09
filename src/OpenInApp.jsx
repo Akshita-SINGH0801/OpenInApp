@@ -12,7 +12,7 @@ const OpenInApp = ({
   const isAndroid = /Android/i.test(navigator.userAgent);
 
   const handleOpen = () => {
-    if (!deepLink || typeof window === "undefined") return;
+    if (!deepLink) return;
 
     const now = Date.now();
     window.location.href = deepLink;
@@ -26,14 +26,20 @@ const OpenInApp = ({
   };
 
   useEffect(() => {
-    if (autoRedirect && typeof window !== "undefined") {
+    if (autoRedirect) {
       handleOpen();
     }
-  }, []);
+  }, [autoRedirect]);
 
-  return !autoRedirect ? (
-    <button onClick={handleOpen}>{buttonText}</button>
-  ) : null;
+  return (
+    <>
+      {!autoRedirect && (
+        <button onClick={handleOpen}>
+          {buttonText}
+        </button>
+      )}
+    </>
+  );
 };
 
 export default OpenInApp;
