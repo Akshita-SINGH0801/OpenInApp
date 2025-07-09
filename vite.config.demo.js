@@ -5,8 +5,9 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   root: path.resolve(__dirname, 'demo'),
-  base: '/OpenInApp/', 
+  base: '/', // use '/' for local; change to '/OpenInApp/' for GitHub Pages
   build: {
-    outDir: path.resolve(__dirname, 'docs'),
+    outDir: 'docs', // ✅ inside demo/, clean structure
+    sourcemap: true,
   },
 });

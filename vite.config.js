@@ -5,6 +5,8 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   build: {
+    sourcemap: true,
+  },
     lib: {
       entry: path.resolve(__dirname, 'src/OpenInApp.jsx'),
       name: 'OpenInApp',
@@ -18,5 +20,5 @@ export default defineConfig({
         },
       },
     },
-  },
+  
 });

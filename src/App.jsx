@@ -1,14 +1,18 @@
 import React from "react";
 import OpenInApp from "./OpenInApp";
+import './style.css';
 
 function App() {
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="app-container">
       <h1>Open In App Demo</h1>
-      <OpenInApp
-        deepLink="yourapp://home"
-        fallbackPlayStore="https://play.google.com/store/apps/details?id=com.example"
-        fallbackAppStore="https://apps.apple.com/app/id123456789"
+    <OpenInApp
+        deepLink="OLX://home"
+        fallbackPlayStore="https://play.google.com/store/apps/details?id=com.olx.southasia&hl=en_IN"
+        fallbackAppStore="https://apps.apple.com/in/app/olx-buy-sell-near-you/id913492792"
+        delay={1000}
+        autoRedirect={false}
+        buttonText="Open In App"
       />
     </div>
   );

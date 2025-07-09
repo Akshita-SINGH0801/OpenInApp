@@ -1,10 +1,12 @@
+// demo/main.jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
-import OpenInApp from "../src/OpenInApp"; 
-import "../src/style.css"; 
+import OpenInApp from "../src/OpenInApp";
+import App from "../src/App";
+import "../src/style.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <OpenInApp />
+    <App />
   </React.StrictMode>
 );
