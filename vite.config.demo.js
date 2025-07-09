@@ -2,12 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig({
-  plugins: [react()],
-  root: path.resolve(__dirname, 'demo'),
-  base: '/OpenInApp/',
-  build: {
-    outDir: 'docs', // ✅ inside demo/, clean structure
-    sourcemap: true,
-  },
+export default defineConfig(({ command }) => {
+  const isBuild = command === 'build';
+
+  return {
+    plugins: [react()],
+    root: path.resolve(__dirname, 'demo'),
+    base: isBuild ? '/OpenInApp/' : '/', 
+    build: {
+      outDir: 'docs',
+    },
+  };
 });
