@@ -4,7 +4,7 @@ const OpenInApp = ({
   deepLink = "",
   fallbackPlayStore = "",
   fallbackAppStore = "",
-  delay = 2000,
+  delay = 2500,
   autoRedirect = false,
   buttonText = "Open in App",
 }) => {
@@ -14,13 +14,14 @@ const OpenInApp = ({
   const handleOpen = () => {
     if (!deepLink) return;
 
-    const now = Date.now();
+    // Try to open deep link immediately
     window.location.href = deepLink;
 
+    // Wait, then fallback to store link
     setTimeout(() => {
       const fallbackUrl = isIOS ? fallbackAppStore : fallbackPlayStore;
-      if (Date.now() - now >= delay && fallbackUrl) {
-        window.open(fallbackUrl, "_blank", "noopener,noreferrer");
+      if (fallbackUrl) {
+        window.location.href = fallbackUrl;   // ✅ Use href for native app handoff
       }
     }, delay);
   };
