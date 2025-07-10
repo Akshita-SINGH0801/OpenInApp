@@ -14,14 +14,14 @@ const OpenInApp = ({
   const handleOpen = () => {
     if (!deepLink) return;
 
-    // Try to open deep link immediately
+    // Step 1: Try to open the app
     window.location.href = deepLink;
 
-    // Wait, then fallback to store link
+    // Step 2: If not installed, fallback to Play Store or App Store app
     setTimeout(() => {
       const fallbackUrl = isIOS ? fallbackAppStore : fallbackPlayStore;
       if (fallbackUrl) {
-        window.location.href = fallbackUrl;   // ✅ Use href for native app handoff
+        window.location.href = fallbackUrl; // ✅ App fallback, opens Play Store app
       }
     }, delay);
   };
