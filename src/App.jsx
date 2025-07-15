@@ -7,7 +7,7 @@ function App() {
     <div className="app-container">
       <h1>Open In App</h1>
       <OpenInApp
-        deepLink={`intent://#Intent;scheme=olx;package=com.olx.southasia;S.browser_fallback_url=${encodeURIComponent("https://play.google.com/store/apps/details?id=com.olx.southasia")};end;`}
+        deepLink="olx://"
         fallbackPlayStore="https://play.google.com/store/apps/details?id=com.olx.southasia"
         fallbackAppStore="https://apps.apple.com/in/app/olx-buy-sell-near-you/id913492792"
         androidPackage="com.olx.southasia"
