@@ -16,7 +16,7 @@ const OpenInApp = ({
     if (!deepLink) return;
 
     if (isIOS) {
-      // ✅ iOS: direct deep link with fallback
+      // iOS: direct deeplink + timeout fallback
       window.location.href = deepLink;
       setTimeout(() => {
         if (fallbackAppStore) {
@@ -25,11 +25,13 @@ const OpenInApp = ({
       }, delay);
 
     } else if (isAndroid) {
-      // ✅ Android: intent:// with fallback Play Store
+      // Android: First try direct deeplink
+      window.location.href = deepLink;
+
       setTimeout(() => {
+        // After delay, try intent:// with fallback
         const path = deepLink.replace(/.*?:\/\//, '');
         const scheme = deepLink.split(':')[0];
-        
         let intentUrl = `intent://${path}#Intent;scheme=${scheme};package=${androidPackage}`;
         
         if (fallbackPlayStore) {
@@ -42,7 +44,7 @@ const OpenInApp = ({
       }, delay);
 
     } else {
-      // ✅ Other devices
+      // Other devices
       window.location.href = fallbackPlayStore || fallbackAppStore || '/';
     }
   };
