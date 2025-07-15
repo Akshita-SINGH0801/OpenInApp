@@ -7,6 +7,7 @@ const OpenInApp = ({
   delay = 2500,
   autoRedirect = false,
   buttonText = "Open in App",
+  androidPackage = "com.olx.southasia", 
 }) => {
   const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
   const isAndroid = /Android/i.test(navigator.userAgent);
@@ -15,27 +16,32 @@ const OpenInApp = ({
     if (!deepLink) return;
 
     if (isIOS) {
-    
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.src = deepLink;
-      document.body.appendChild(iframe);
-
+      
+      window.location.href = deepLink;
       setTimeout(() => {
-        document.body.removeChild(iframe);
         if (fallbackAppStore) {
           window.location.href = fallbackAppStore;
         }
       }, delay);
-    } else {
-      // Android: Use direct href to trigger intent or app
+    } else if (isAndroid) {
+      
       window.location.href = deepLink;
 
       setTimeout(() => {
+        
+        const path = deepLink.replace(/.*?:\/\//, '');
+        const scheme = deepLink.split(':')[0];
+        const intentUrl = `intent://${path}#Intent;scheme=${scheme};package=${androidPackage};end;`;
+
         if (fallbackPlayStore) {
           window.location.href = fallbackPlayStore;
+        } else {
+          window.location.href = intentUrl;
         }
       }, delay);
+    } else {
+      
+      window.location.href = fallbackPlayStore || fallbackAppStore || '/';
     }
   };
 
@@ -48,7 +54,7 @@ const OpenInApp = ({
   return (
     <>
       {!autoRedirect && (
-        <button onClick={handleOpen}>
+        <button className="open-in-app-button" onClick={handleOpen}>
           {buttonText}
         </button>
       )}

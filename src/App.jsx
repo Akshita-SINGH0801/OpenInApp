@@ -1,18 +1,19 @@
 import React from "react";
 import OpenInApp from "./OpenInApp";
-import './style.css';
+import "./style.css";
 
 function App() {
   return (
     <div className="app-container">
-      <h1>Open In App Demo</h1>
+      <h1>Open In App</h1>
       <OpenInApp
         deepLink="olx://"
         fallbackPlayStore="https://play.google.com/store/apps/details?id=com.olx.southasia"
         fallbackAppStore="https://apps.apple.com/in/app/olx-buy-sell-near-you/id913492792"
+        androidPackage="com.olx.southasia"
         delay={2500}
         autoRedirect={false}
-        buttonText="Open In App"
+        buttonText="Open in OLX App"
       />
     </div>
   );
