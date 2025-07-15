@@ -16,7 +16,7 @@ const OpenInApp = ({
     if (!deepLink) return;
 
     if (isIOS) {
-      // iOS: direct deeplink with timeout fallback
+      // ✅ iOS: direct deep link with fallback
       window.location.href = deepLink;
       setTimeout(() => {
         if (fallbackAppStore) {
@@ -25,18 +25,24 @@ const OpenInApp = ({
       }, delay);
 
     } else if (isAndroid) {
-      // Android: intent:// with browser fallback to Play Store
+      // ✅ Android: intent:// with fallback Play Store
       setTimeout(() => {
         const path = deepLink.replace(/.*?:\/\//, '');
         const scheme = deepLink.split(':')[0];
-        const encodedFallback = fallbackPlayStore ? encodeURIComponent(fallbackPlayStore) : '';
-        const intentUrl = `intent://${path}#Intent;scheme=${scheme};package=${androidPackage}${encodedFallback ? `;S.browser_fallback_url=${encodedFallback}` : ''};end;`;
-
+        
+        let intentUrl = `intent://${path}#Intent;scheme=${scheme};package=${androidPackage}`;
+        
+        if (fallbackPlayStore) {
+          intentUrl += `;S.browser_fallback_url=${encodeURIComponent(fallbackPlayStore)}`;
+        }
+        
+        intentUrl += ';end;';
+        
         window.location.href = intentUrl;
       }, delay);
 
     } else {
-      // Fallback for other platforms
+      // ✅ Other devices
       window.location.href = fallbackPlayStore || fallbackAppStore || '/';
     }
   };
